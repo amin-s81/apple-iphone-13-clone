@@ -1,0 +1,242 @@
+#nav-container {
+    @include Dimensions(100%, 44px);
+    background-color: $color-primary;
+    // text-align: center;
+    box-sizing: content-box;
+
+    // ----------------------------------------------
+    // desktop mode
+    // ----------------------------------------------
+
+    #navbar {
+        max-width: 980px;
+
+        // check this 
+        height: 100%;
+
+        @include pa-gin(0px 22px, 0px auto);
+        font-size: 17px;
+        text-align: center;
+        box-sizing: content-box;
+
+
+        #menu-container {
+            // check this 
+            height: 100%;
+
+            margin: 0px -8px;
+            box-sizing: content-box;
+
+
+            .menu {
+                @include menu(100%,);
+
+                li {
+                    @include menu-li();
+
+                    &:hover {
+                        opacity: 1;
+                    }
+
+
+                    a {
+                        @include menu-li-a();
+                    }
+                }
+
+                .list-item a {
+                    @extend %list_item-a;
+                }
+            }
+        }
+    }
+
+    // ----------------------------------------------
+    // tablet mode
+    // ----------------------------------------------
+    .tablet {
+        height: 48px;
+        @include menu();
+        align-items: normal;
+
+        li {
+            @include menu-li(44px);
+            text-align: center;
+
+            a {
+                @include menu-li-a(48px);
+            }
+        }
+
+        .frame {
+            @include Dimensions(48px, 48px);
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            .center {
+                @include Dimensions(30%, 30%);
+                @extend %always-center;
+                position: relative;
+                cursor: pointer;
+
+                // .bar{}
+                .bar-top {
+                    @extend %bar;
+                    top: 25%;
+                }
+
+                .bar-bottom {
+                    @extend %bar;
+                    top: 65%;
+                }
+
+                //  //  //  //  //  //  //  
+                .open .bar-top {
+                    top: 43%;
+                }
+
+                .open .bar-bottom {
+                    top: 50%;
+                }
+
+                .rotate .bar-top {
+                    top: 46.5%;
+                    transform: rotate(45deg);
+                }
+
+                .rotate .bar-bottom {
+                    top: 46.5%;
+                    transform: rotate(-45deg);
+
+                }
+            }
+        }
+    }
+
+    // ----------------------------------------------
+    // hamburger menu
+    // ----------------------------------------------
+    #hamburger-menu {
+        @include Dimensions(100%, 100vh);
+        min-height: 450px;
+        background-color: #000;
+
+        #search-container {
+            @include Dimensions(100%, 53px);
+            background-color: #000;
+            padding: 0px 10px;
+            border-bottom: 1px solid #424245;
+
+            #search-box {
+                @include Dimensions(100%, 36px);
+                max-width: 584px;
+                margin: 0 auto;
+                background-color: $color-secondary;
+                border-radius: 8px;
+                overflow: hidden;
+                display: flex;
+
+                a {
+                    @include Dimensions(30px, 36px);
+                    position: relative;
+                    padding: 0;
+                    background-position: center -47.7px;
+                }
+
+                input {
+                    font-size: 17px;
+                    // check this
+                    font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    border: none;
+                    color: #fff;
+                    background-color: $color-secondary;
+                    width: 100%;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        #hamburger-ul {
+            @include pa-gin(5px 40px, 0 auto);
+            max-width: 664px;
+            height: auto;
+            list-style: none;
+            display: grid;
+
+            li {
+                font-size: 17px;
+                height: 44px;
+                border-bottom: 1px solid #424245;
+                display: flex;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                a {
+                    @extend %text-color;
+                    width: 100%; //check this
+                    text-align: left;
+                    line-height: 44px;
+                    text-decoration: none;
+                    transition: opacity 0.3s ease;
+                }
+            }
+        }
+    }
+
+
+
+    // _________________________________________logos_________________________________________ 
+    .apple-icon {
+        @include logo("https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg", center, 14px, 13px)
+    }
+
+    .search-icon {
+        @include logo("https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_search_image__cbllq1gkias2_large.svg", top center, 15px, 15px)
+    }
+
+    .bag-icon {
+        @include logo("https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_bag_image__yzte50i47ciu_large.svg", center, 13px, 13px)
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////// */
+//    meia query 
+
+@media screen and (max-width:832px) {
+    #nav-container {
+        height: 48px;
+
+        .tablet {
+            li {
+                width: 48px;
+                opacity: 0.9; // ?? 
+
+                &:hover {
+                    opacity: 1
+                }
+            }
+        }
+
+        .apple-icon {
+            box-sizing: border-box;
+            background-size: 17px;
+            width: 100%;
+        }
+
+        .bag-icon {
+            background-size: 15px;
+            margin: 0;
+        }
+    }
+}

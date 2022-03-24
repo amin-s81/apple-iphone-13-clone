@@ -1,0 +1,38 @@
+//---------------------------------------------------
+// navbar
+//---------------------------------------------------
+
+// .menu
+@mixin menu($w:100%, $h:100%) {
+    @include Dimensions($w, $h);
+    @include flex(space-between);
+    list-style: none;
+    box-sizing: content-box;
+}
+
+// .menu li
+@mixin menu-li($h:100%) {
+    height: $h;
+    position: relative;
+    font-weight: 300;
+    letter-spacing: 0.25px;
+    display: list-item;
+}
+
+// .menu li a
+@mixin menu-li-a($h:100%) {
+    @extend %text-color;
+    height: $h;
+    display: inline-block !important;
+    position: relative;
+    top: 0;
+    text-decoration: none;
+    font-size: 12px;
+    z-index: 10;
+    line-height: 44px;
+    transition: opacity 0.3s ease;
+}
+
+%list_item-a {
+    padding: 0px 8px;
+}
