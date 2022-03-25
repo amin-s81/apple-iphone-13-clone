@@ -29,18 +29,19 @@
 
 
             .menu {
-                @include menu(100%,);
+                @include menu(100%, );
 
                 li {
                     @include menu-li();
 
-                    &:hover {
-                        opacity: 1;
-                    }
 
 
                     a {
                         @include menu-li-a();
+
+                        &:hover {
+                            opacity: 1;
+                        }
                     }
                 }
 
@@ -58,6 +59,7 @@
         height: 48px;
         @include menu();
         align-items: normal;
+        transition: all 0.3s ease;
 
         li {
             @include menu-li(44px);
@@ -65,6 +67,10 @@
 
             a {
                 @include menu-li-a(48px);
+
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
 
@@ -73,39 +79,44 @@
             position: absolute;
             top: 0;
             left: 0;
+            cursor: pointer;
+
 
             .center {
                 @include Dimensions(30%, 30%);
                 @extend %always-center;
                 position: relative;
-                cursor: pointer;
 
-                // .bar{}
-                .bar-top {
+                .bar {
                     @extend %bar;
+                }
+
+                .bar-top {
                     top: 25%;
                 }
 
                 .bar-bottom {
-                    @extend %bar;
                     top: 65%;
                 }
+            }
 
-                //  //  //  //  //  //  //  
-                .open .bar-top {
+            .center.open {
+                .bar-top {
                     top: 43%;
                 }
 
-                .open .bar-bottom {
+                .bar-bottom {
                     top: 50%;
                 }
+            }
 
-                .rotate .bar-top {
+            .center.rotate {
+                .bar-top {
                     top: 46.5%;
                     transform: rotate(45deg);
                 }
 
-                .rotate .bar-bottom {
+                .bar-bottom {
                     top: 46.5%;
                     transform: rotate(-45deg);
 
@@ -118,15 +129,18 @@
     // hamburger menu
     // ----------------------------------------------
     #hamburger-menu {
-        @include Dimensions(100%, 100vh);
-        min-height: 450px;
+        // @include Dimensions(100%, 100vh);
+        height: calc(100vh - 48px);
         background-color: #000;
+        display: none;
 
         #search-container {
             @include Dimensions(100%, 53px);
             background-color: #000;
             padding: 0px 10px;
             border-bottom: 1px solid #424245;
+            display: block;
+            position: relative;
 
             #search-box {
                 @include Dimensions(100%, 36px);
@@ -134,23 +148,23 @@
                 margin: 0 auto;
                 background-color: $color-secondary;
                 border-radius: 8px;
-                overflow: hidden;
                 display: flex;
 
                 a {
                     @include Dimensions(30px, 36px);
-                    position: relative;
+                    position: absolute;
                     padding: 0;
                     background-position: center -47.7px;
+                    cursor: text;
                 }
 
                 input {
                     font-size: 17px;
-                    // check this
-                    font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    padding-left: 30px;
                     border: none;
                     color: #fff;
-                    background-color: $color-secondary;
+                    background-color: transparent;
+                    z-index: 10;
                     width: 100%;
 
                     &:focus {
@@ -161,15 +175,15 @@
         }
 
         #hamburger-ul {
-            @include pa-gin(5px 40px, 0 auto);
+            @include pa-gin(5px 40px 60px, 0 auto);
             max-width: 664px;
-            height: auto;
+            height: 100%;
+            overflow-y: auto !important;
             list-style: none;
-            display: grid;
 
             li {
                 font-size: 17px;
-                height: 44px;
+                height: 45px;
                 border-bottom: 1px solid #424245;
                 display: flex;
 
@@ -183,9 +197,10 @@
 
                 a {
                     @extend %text-color;
-                    width: 100%; //check this
+                    height: 45px;
+                    width: 100%;
                     text-align: left;
-                    line-height: 44px;
+                    line-height: 45px;
                     text-decoration: none;
                     transition: opacity 0.3s ease;
                 }
@@ -220,11 +235,6 @@
         .tablet {
             li {
                 width: 48px;
-                opacity: 0.9; // ?? 
-
-                &:hover {
-                    opacity: 1
-                }
             }
         }
 
